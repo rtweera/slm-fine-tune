@@ -1,9 +1,3 @@
-# yelp_reviews:
-#   type: kedro_hf_datasets.HFDataset
-#   dataset_name: yelp_review_full
-
-
-
-hi:
-  type: pandas.CSVDataSet
-  filepath: data/01_raw/hi.csv
+chatgpt-prompt:
+  type: fft.monkey_patch.PatchedHFDataset
+  dataset_name: fka/awesome-chatgpt-prompts
