@@ -5,7 +5,7 @@ generated using Kedro 0.19.12
 
 from kedro.pipeline import node, Pipeline, pipeline  # noqa
 
-from fft.pipelines.data_processing.nodes import preprocess_dataset, create_model_input_table
+from demo.pipelines.data_processing.nodes import preprocess_dataset, create_model_input_table
 
 
 def create_pipeline(**kwargs) -> Pipeline:
