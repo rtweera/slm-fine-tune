@@ -1,57 +1,32 @@
+"""
+This is a boilerplate pipeline 'data_science'
+generated using Kedro 0.19.12
+"""
+
 import logging
-
+import typing as t
 import pandas as pd
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import max_error, mean_absolute_error, r2_score
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
 
+logger = logging.getLogger(__name__)
 
-def split_data(data: pd.DataFrame, parameters: dict) -> tuple:
-    """Splits data into features and targets training and test sets.
-
-    Args:
-        data: Data containing features and target.
-        parameters: Parameters defined in parameters/data_science.yml.
-    Returns:
-        Split data.
-    """
-    X = data[parameters["features"]]
-    y = data["price"]
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=parameters["test_size"], random_state=parameters["random_state"]
-    )
+def split_dataset(df: pd.DataFrame, parameters: t.Dict) -> t.Tuple:
+    X = df[parameters['features']]
+    y = df[parameters['target']]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=parameters['test_size'], random_state=parameters['random_state'])
+    X_train.reset_index(drop=True, inplace=True)
+    X_test.reset_index(drop=True, inplace=True)
+    y_train.reset_index(drop=True, inplace=True)
+    y_test.reset_index(drop=True, inplace=True)
     return X_train, X_test, y_train, y_test
 
 
-def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> LinearRegression:
-    """Trains the linear regression model.
-
-    Args:
-        X_train: Training data of independent features.
-        y_train: Training data for price.
-
-    Returns:
-        Trained model.
-    """
-    regressor = LinearRegression()
-    regressor.fit(X_train, y_train)
-    return regressor
+def train_model(train_X: pd.DataFrame, train_y: pd.Series) -> LogisticRegression:
+    model = LogisticRegression()
+    model.fit(train_X, train_y)
+    return model
 
 
-def evaluate_model(
-    regressor: LinearRegression, X_test: pd.DataFrame, y_test: pd.Series
-) -> dict[str, float]:
-    """Calculates and logs the coefficient of determination.
-
-    Args:
-        regressor: Trained model.
-        X_test: Testing data of independent features.
-        y_test: Testing data for price.
-    """
-    y_pred = regressor.predict(X_test)
-    score = r2_score(y_test, y_pred)
-    mae = mean_absolute_error(y_test, y_pred)
-    me = max_error(y_test, y_pred)
-    logger = logging.getLogger(__name__)
-    logger.info("Model has a coefficient R^2 of %.3f on test data.", score)
-    return {"r2_score": score, "mae": mae, "max_error": me}
+def evaluate_model(model: LogisticRegression, test_X: pd.DataFrame, test_y: pd.Series) -> float:
+    ...

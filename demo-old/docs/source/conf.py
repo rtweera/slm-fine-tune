@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-# fft documentation build
+# demo documentation build
 # configuration file, created by sphinx-quickstart.
 #
 # This file is execfile()d with the current directory set to its
@@ -20,11 +20,11 @@
 import re
 
 from kedro.framework.cli.utils import find_stylesheets
-from fft import __version__ as release
+from demo import __version__ as release
 
 # -- Project information -----------------------------------------------------
 
-project = "fft"
+project = "demo"
 author = "Kedro"
 
 # The short X.Y version.
@@ -120,7 +120,7 @@ html_show_copyright = False
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = "fftdoc"
+htmlhelp_basename = "demodoc"
 
 # -- Options for LaTeX output ------------------------------------------------
 
@@ -148,8 +148,8 @@ latex_elements = {
 latex_documents = [
     (
         master_doc,
-        "fft.tex",
-        "fft Documentation",
+        "demo.tex",
+        "demo Documentation",
         "Kedro",
         "manual",
     )
@@ -162,8 +162,8 @@ latex_documents = [
 man_pages = [
     (
         master_doc,
-        "fft",
-        "fft Documentation",
+        "demo",
+        "demo Documentation",
         [author],
         1,
     )
@@ -177,11 +177,11 @@ man_pages = [
 texinfo_documents = [
     (
         master_doc,
-        "fft",
-        "fft Documentation",
+        "demo",
+        "demo Documentation",
         author,
-        "fft",
-        "Project fft codebase.",
+        "demo",
+        "Project demo codebase.",
         "Data-Science",
     )
 ]

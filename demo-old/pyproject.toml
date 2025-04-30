@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 requires-python = ">=3.9"
-name = "fft"
+name = "demo"
 readme = "README.md"
 dynamic = ["version"]
 dependencies = [
@@ -12,15 +12,14 @@ dependencies = [
     "jupyterlab>=3.0",
     "notebook",
     "kedro[jupyter]~=0.19.12",
-    "kedro-datasets[pandas-csvdataset, pandas-exceldataset, pandas-parquetdataset, spark-sparkdataset, plotly-plotlydataset, plotly-jsondataset, matplotlib-matplotlibwriter]>=3.0",
+    "kedro-datasets[pandas-csvdataset, pandas-exceldataset, pandas-parquetdataset, plotly-plotlydataset, plotly-jsondataset, matplotlib-matplotlibwriter]>=3.0",
     "kedro-viz>=6.7.0",
     "scikit-learn~=1.5.1",
-    "seaborn~=0.12.1",
-    "setuptools; python_version >= '3.12'"
+    "seaborn~=0.12.1"
 ]
 
 [project.scripts]
-"fft" = "fft.__main__:main"
+"demo" = "demo.__main__:main"
 
 [project.entry-points."kedro.hooks"]
 
@@ -44,24 +43,24 @@ dev = [
 ]
 
 [tool.setuptools.dynamic]
-version = {attr = "fft.__version__"}
+version = {attr = "demo.__version__"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
 namespaces = false
 
 [tool.kedro]
-package_name = "fft"
-project_name = "fft"
+package_name = "demo"
+project_name = "demo"
 kedro_init_version = "0.19.12"
-tools = "['Linting', 'Testing', 'Custom Logging', 'Documentation', 'Data Structure', 'PySpark']"
-example_pipeline = "False"
+tools = "['Linting', 'Testing', 'Custom Logging', 'Documentation', 'Data Structure']"
+example_pipeline = "True"
 source_dir = "src"
 
 [tool.pytest.ini_options]
 addopts = """
 --cov-report term-missing \
---cov src/fft -ra"""
+--cov src/demo -ra"""
 
 [tool.coverage.report]
 fail_under = 0
@@ -86,4 +85,4 @@ select = [
 ignore = ["E501"]  # Ruff format takes care of line-too-long
 
 [tool.kedro_telemetry]
-project_id = "028346f882d24c768f80c2a928cf190a"
+project_id = "9f5ffa5d86f74f1fa1530f319eec2cc6"

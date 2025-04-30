@@ -3,7 +3,6 @@
 
 from kedro_datasets.huggingface import HFDataset
 
-
 class PatchedHFDataset(HFDataset):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

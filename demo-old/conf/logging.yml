@@ -36,7 +36,7 @@ loggers:
   kedro:
     level: INFO
 
-  pyspark_spaceflights:
+  demo:
     level: INFO
 
 root:
