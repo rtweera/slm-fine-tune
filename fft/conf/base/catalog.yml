@@ -1,3 +1,11 @@
-chatgpt-prompt:
+sentiments:
   type: fft.monkey_patch.PatchedHFDataset
-  dataset_name: fka/awesome-chatgpt-prompts
+  dataset_name: mteb/tweet_sentiment_extraction
+
+preprocessed_sentiments:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/preprocessed_sentiments.parquet
+
+model_input_table:
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/model_input_table.parquet
