@@ -43,6 +43,26 @@ tokenizer:
   type: fft.datasets.hf_model.HuggingFaceTokenizer
   model_name: Qwen/Qwen3-0.6B
 
-tokenized_sentiments:
+tokenized_sentiments_readable_train_X:
   type: pandas.CSVDataset
-  filepath: data/04_feature/tokenized.csv
+  filepath: data/05_model_input/tokenized_train_X.csv
+
+tokenized_sentiments_train_X:
+  type: fft.datasets.tokenized_dataset.TorchTokenizedDataset
+  filepath: data/05_model_input/tokenized_train_X.pt
+
+tokenized_sentiments_readable_validation_X:
+  type: pandas.CSVDataset
+  filepath: data/05_model_input/tokenized_validation_X.csv
+
+tokenized_sentiments_validation_X:
+  type: fft.datasets.tokenized_dataset.TorchTokenizedDataset
+  filepath: data/05_model_input/tokenized_validation_X.pt
+
+tokenized_sentiments_readable_test_X:
+  type: pandas.CSVDataset
+  filepath: data/05_model_input/tokenized_test_X.csv
+
+tokenized_sentiments_test_X:
+  type: fft.datasets.tokenized_dataset.TorchTokenizedDataset
+  filepath: data/05_model_input/tokenized_test_X.pt

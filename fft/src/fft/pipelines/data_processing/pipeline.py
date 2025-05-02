@@ -9,7 +9,7 @@ from .nodes import (
     convert_to_dataframe,
     drop_extra_cols,
     split_data,
-    tokenize_and_get_dataset,
+    tokenize_dataset,
 )
 
 
@@ -42,10 +42,22 @@ def create_pipeline(**kwargs) -> Pipeline:
                 name="dataset_split_node",
             ),
             node(
-                func=tokenize_and_get_dataset,
+                func=tokenize_dataset,
                 inputs=["train_X_sentiments", "tokenizer", "params:tokenizer_config"],
-                outputs="tokenized_sentiments",
-                name="tokenize_node",
+                outputs=["tokenized_sentiments_train_X", 'tokenized_sentiments_readable_train_X'],
+                name="tokenize_trainX_node",
+            ),
+            node(
+                func=tokenize_dataset,
+                inputs=["validation_X_sentiments", "tokenizer", "params:tokenizer_config"],
+                outputs=["tokenized_sentiments_validation_X", 'tokenized_sentiments_readable_validation_X'],
+                name="tokenize_validationX_node",
+            ),
+            node(
+                func=tokenize_dataset,
+                inputs=["test_X_sentiments", "tokenizer", "params:tokenizer_config"],
+                outputs=["tokenized_sentiments_test_X", 'tokenized_sentiments_readable_test_X'],
+                name="tokenize_testX_node",
             ),
         ]
     )

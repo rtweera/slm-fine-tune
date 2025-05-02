@@ -8,7 +8,7 @@ import typing as t
 import datasets as ds
 from transformers import AutoTokenizer
 from sklearn.model_selection import train_test_split
-
+from transformers import BatchEncoding
 
 def convert_to_dataframe(df: ds.DatasetDict) -> pd.DataFrame:
     train = df["train"].to_pandas()
@@ -39,11 +39,11 @@ def split_data(df: pd.DataFrame, parameters: t.Dict) -> pd.DataFrame:
     return data
 
 
-def tokenize_and_get_dataset(
+def tokenize_dataset(
     df: pd.DataFrame, tokenizer: AutoTokenizer, parameters: t.Dict
-) -> pd.DataFrame:
+) -> t.Tuple[BatchEncoding, pd.DataFrame]:
     texts = list(df[parameters["tokenize_column"]])
     tokenized = tokenizer(texts, padding=True, truncation=True, return_tensors="pt")
     # padding to make every text equal - for tokenizing. truncation text length is only upto model context window limit
     df = pd.DataFrame({k: v.numpy().tolist() for k, v in tokenized.items()})
-    return df
+    return [tokenized, df]
