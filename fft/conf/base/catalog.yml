@@ -42,6 +42,7 @@ test_y_sentiments:
 tokenizer:
   type: fft.datasets.hf_model.HuggingFaceTokenizer
   model_name: Qwen/Qwen3-0.6B
+  credentials: huggingface
 
 tokenized_sentiments_readable_train_X:
   type: pandas.CSVDataset
@@ -66,3 +67,8 @@ tokenized_sentiments_readable_test_X:
 tokenized_sentiments_test_X:
   type: fft.datasets.tokenized_dataset.TorchTokenizedDataset
   filepath: data/05_model_input/tokenized_test_X.pt
+
+model:
+  type: fft.datasets.hf_model.HuggingFaceCausalModel
+  model_name: Qwen/Qwen3-0.6B
+  credentials: huggingface

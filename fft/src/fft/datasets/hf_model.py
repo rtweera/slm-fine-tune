@@ -2,14 +2,11 @@ from typing import Any
 from kedro.io import AbstractDataset
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from huggingface_hub import login
-from dotenv import load_dotenv
-import os
-
 
 class HuggingFaceTokenizer(AbstractDataset):
-    def __init__(self, model_name: str):
+    def __init__(self, model_name: str, credentials: dict = None):
         self.model_name = model_name
-        self._handle_login()
+        self._handle_login(credentials)
 
     def load(self) -> AutoTokenizer:
         tokenizer = AutoTokenizer.from_pretrained(self.model_name)
@@ -27,18 +24,18 @@ class HuggingFaceTokenizer(AbstractDataset):
             model_name=self.model_name, data_type="tokenizer", class_name=self.__class__
         )
 
-    def _handle_login(self) -> None:
+    def _handle_login(self, credentials: dict) -> None:
+        token = credentials['token'] if credentials else None
         try:
-            load_dotenv()
-            login(token=os.getenv("hf_token"))
+            login(token=token)
         except ValueError as e:
             raise Exception(f"HF key error: {e}")
 
 
 class HuggingFaceCausalModel(AbstractDataset):
-    def __init__(self, model_name: str):
+    def __init__(self, model_name: str, credentials: dict = None):
         self.model_name = model_name
-        self._handle_login()
+        self._handle_login(credentials)
 
     def load(self) -> AutoModelForCausalLM:
         model = AutoModelForCausalLM.from_pretrained(self.model_name)
@@ -49,9 +46,14 @@ class HuggingFaceCausalModel(AbstractDataset):
             f"Saving not supported yet for the class {self.__class__}."
         )
 
-    def _handle_login(self) -> None:
+    def _handle_login(self, credentials: dict) -> None:
+        token = credentials['token'] if credentials else None
         try:
-            load_dotenv()
-            login(token=os.getenv("hf_token"))
+            login(token=token)
         except ValueError as e:
             raise Exception(f"HF key error: {e}")
+
+    def _describe(self) -> dict[str, Any]:
+        return dict(
+            model_name=self.model_name, data_type="model", class_name=self.__class__
+        )
