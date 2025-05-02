@@ -1,0 +1,42 @@
+# This is a boilerplate parameters config generated for pipeline 'fine_tuning'
+# using Kedro 0.19.12.
+#
+# Documentation for this file format can be found in "Parameters"
+# Link: https://docs.kedro.org/en/0.19.12/configuration/parameters.html
+
+model_config:
+  model: Qwen/Qwen3-0.6B
+
+training_config:
+  training:
+    per_gpu_batch_size: 4
+    accumulation_steps: 32
+    mixed_precision: True
+    epochs: 1
+    learning_rate: 2e-5
+    learning_rate_scheduler: reduce_lr_on_plateau
+    L2_regularization_strength: 1e-2
+  evaluation:
+    strategy: steps
+    steps: 1
+    per_gpu_batch_size: 64
+    accumulation_steps: 8
+  saving:
+    directory: data/06_models
+    strategy: steps
+    steps: 1
+    total_saves: 2
+  logging:
+    directory: data/06_models/logs
+    strategy: steps
+    steps: 1
+  reporting:
+    to: wandb
+    run_name: demo-fft
+  model_selection:
+    load_best_model_to_memory: True
+    best_model_selection_metric: eval_f1
+    selection_metric_higher_is_better: True
+  huggingface:
+    push: True
+    strategy: checkpoint

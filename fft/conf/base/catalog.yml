@@ -15,58 +15,58 @@ intermediate_sentiments:
   type: pandas.ParquetDataset
   filepath: data/02_intermediate/intermediate.pq
 
-train_X_sentiments:
+train_sentiments:
   type: pandas.ParquetDataset
-  filepath: data/03_primary/trainX.pq
+  filepath: data/03_primary/train.pq
 
-validation_X_sentiments:
+validation_sentiments:
   type: pandas.ParquetDataset
-  filepath: data/03_primary/validationX.pq
+  filepath: data/03_primary/validation.pq
 
-test_X_sentiments:
+test_sentiments:
   type: pandas.ParquetDataset
-  filepath: data/03_primary/testX.pq
+  filepath: data/03_primary/test.pq
 
-train_y_sentiments:
-  type: pandas.ParquetDataset
-  filepath: data/03_primary/trainy.pq
+# train_y_sentiments:
+#   type: pandas.ParquetDataset
+#   filepath: data/03_primary/trainy.pq
 
-validation_y_sentiments:
-  type: pandas.ParquetDataset
-  filepath: data/03_primary/validationy.pq
+# validation_y_sentiments:
+#   type: pandas.ParquetDataset
+#   filepath: data/03_primary/validationy.pq
 
-test_y_sentiments:
-  type: pandas.ParquetDataset
-  filepath: data/03_primary/testy.pq
+# test_y_sentiments:
+#   type: pandas.ParquetDataset
+#   filepath: data/03_primary/testy.pq
 
 tokenizer:
   type: fft.datasets.hf_model.HuggingFaceTokenizer
   model_name: Qwen/Qwen3-0.6B
   credentials: huggingface
 
-tokenized_sentiments_readable_train_X:
+tokenized_sentiments_readable_train:
   type: pandas.CSVDataset
-  filepath: data/05_model_input/tokenized_train_X.csv
+  filepath: data/05_model_input/tokenized_train.csv
 
-tokenized_sentiments_train_X:
-  type: fft.datasets.tokenized_dataset.TorchTokenizedDataset
-  filepath: data/05_model_input/tokenized_train_X.pt
+tokenized_sentiments_train:
+  type: fft.datasets.tokenized_dataset.HFDiskDataset
+  filepath: data/05_model_input/tokenized_train.pt
 
-tokenized_sentiments_readable_validation_X:
+tokenized_sentiments_readable_validation:
   type: pandas.CSVDataset
-  filepath: data/05_model_input/tokenized_validation_X.csv
+  filepath: data/05_model_input/tokenized_validation.csv
 
-tokenized_sentiments_validation_X:
-  type: fft.datasets.tokenized_dataset.TorchTokenizedDataset
-  filepath: data/05_model_input/tokenized_validation_X.pt
+tokenized_sentiments_validation:
+  type: fft.datasets.tokenized_dataset.HFDiskDataset
+  filepath: data/05_model_input/tokenized_validation
 
-tokenized_sentiments_readable_test_X:
+tokenized_sentiments_readable_test:
   type: pandas.CSVDataset
-  filepath: data/05_model_input/tokenized_test_X.csv
+  filepath: data/05_model_input/tokenized_test
 
-tokenized_sentiments_test_X:
-  type: fft.datasets.tokenized_dataset.TorchTokenizedDataset
-  filepath: data/05_model_input/tokenized_test_X.pt
+tokenized_sentiments_test:
+  type: fft.datasets.tokenized_dataset.HFDiskDataset
+  filepath: data/05_model_input/tokenized_test
 
 model:
   type: fft.datasets.hf_model.HuggingFaceCausalModel

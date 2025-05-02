@@ -12,8 +12,9 @@ dataset_config:
   validation_size: 0.1
   random_state: 5
 
-model_config:
-  model: Qwen/Qwen3-0.6B
-
 tokenizer_config:
   tokenize_column: text
+  padding: True
+  truncation: True
+  batched: True
+  batch_size: 1000

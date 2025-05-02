@@ -3,6 +3,7 @@ from kedro.io import AbstractDataset
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from huggingface_hub import login
 
+
 class HuggingFaceTokenizer(AbstractDataset):
     def __init__(self, model_name: str, credentials: dict = None):
         self.model_name = model_name
@@ -25,7 +26,7 @@ class HuggingFaceTokenizer(AbstractDataset):
         )
 
     def _handle_login(self, credentials: dict) -> None:
-        token = credentials['token'] if credentials else None
+        token = credentials["token"] if credentials else None
         try:
             login(token=token)
         except ValueError as e:
@@ -47,7 +48,7 @@ class HuggingFaceCausalModel(AbstractDataset):
         )
 
     def _handle_login(self, credentials: dict) -> None:
-        token = credentials['token'] if credentials else None
+        token = credentials["token"] if credentials else None
         try:
             login(token=token)
         except ValueError as e:
