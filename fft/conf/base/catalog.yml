@@ -7,3 +7,42 @@ sentiments:
   type: fft.monkey_patch.PatchedHFDataset
   dataset_name: mteb/tweet_sentiment_extraction
 
+raw_sentiments:
+  type: pandas.ParquetDataset
+  filepath: data/01_raw/raw_dataframe.pq
+
+intermediate_sentiments:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/intermediate.pq
+
+train_X_sentiments:
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/trainX.pq
+
+validation_X_sentiments:
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/validationX.pq
+
+test_X_sentiments:
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/testX.pq
+
+train_y_sentiments:
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/trainy.pq
+
+validation_y_sentiments:
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/validationy.pq
+
+test_y_sentiments:
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/testy.pq
+
+tokenizer:
+  type: fft.datasets.hf_model.HuggingFaceTokenizer
+  model_name: Qwen/Qwen3-0.6B
+
+tokenized_sentiments:
+  type: pandas.CSVDataset
+  filepath: data/04_feature/tokenized.csv
