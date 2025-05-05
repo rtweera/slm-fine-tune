@@ -46,27 +46,27 @@ tokenizer:
 
 tokenized_sentiments_readable_train:
   type: pandas.CSVDataset
-  filepath: data/05_model_input/tokenized_train.csv
+  filepath: data/04_feature/tokenized_train.csv
 
 tokenized_sentiments_train:
   type: fft.datasets.tokenized_dataset.HFDiskDataset
-  filepath: data/05_model_input/tokenized_train.pt
+  filepath: data/04_feature/tokenized_train.pt
 
 tokenized_sentiments_readable_validation:
   type: pandas.CSVDataset
-  filepath: data/05_model_input/tokenized_validation.csv
+  filepath: data/04_feature/tokenized_validation.csv
 
 tokenized_sentiments_validation:
   type: fft.datasets.tokenized_dataset.HFDiskDataset
-  filepath: data/05_model_input/tokenized_validation
+  filepath: data/04_feature/tokenized_validation.pt
 
 tokenized_sentiments_readable_test:
   type: pandas.CSVDataset
-  filepath: data/05_model_input/tokenized_test
+  filepath: data/04_feature/tokenized_test.csv
 
 tokenized_sentiments_test:
   type: fft.datasets.tokenized_dataset.HFDiskDataset
-  filepath: data/05_model_input/tokenized_test
+  filepath: data/04_feature/tokenized_test.pt
 
 model:
   type: fft.datasets.hf_model.HuggingFaceCausalModel

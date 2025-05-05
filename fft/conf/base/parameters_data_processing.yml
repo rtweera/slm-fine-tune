@@ -14,6 +14,7 @@ dataset_config:
 
 tokenizer_config:
   tokenize_column: text
+  keep_columns: ['input_ids', 'attention_mask', 'label']
   padding: True
   truncation: True
   batched: True
