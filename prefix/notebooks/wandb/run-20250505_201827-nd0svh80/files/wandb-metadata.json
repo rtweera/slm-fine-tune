@@ -1,0 +1,29 @@
+{
+  "os": "Windows-10-10.0.19045-SP0",
+  "python": "CPython 3.12.9",
+  "startedAt": "2025-05-05T14:48:27.470831Z",
+  "program": "notebooks/tuning.ipynb",
+  "git": {
+    "remote": "https://github.com/rtweera/slm-fine-tune.git",
+    "commit": "17c415c30f2942dbe329627ef852c58f9513bb22"
+  },
+  "email": "ravindutharuka2001@gmail.com",
+  "root": "C:\\Users\\Ravindu\\Documents\\My Projects\\slm-fine-tune\\prefix\\notebooks",
+  "host": "ravinduwee",
+  "executable": "C:\\Users\\Ravindu\\Documents\\My Projects\\slm-fine-tune\\venv-slm-fine-tune\\Scripts\\python.exe",
+  "cpu_count": 4,
+  "cpu_count_logical": 8,
+  "disk": {
+    "/": {
+      "total": "499427872768",
+      "used": "366570430464"
+    }
+  },
+  "memory": {
+    "total": "16754077696"
+  },
+  "cpu": {
+    "count": 4,
+    "countLogical": 8
+  }
+}
