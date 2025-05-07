@@ -1,5 +1,8 @@
 from dataclasses import dataclass, field
+import torch
+from torch.utils.data import Dataset
 from typing import Optional, List, Union
+
 
 @dataclass
 class TransformerInput:
@@ -28,3 +31,19 @@ class TransformerInput:
     # For multiple choice tasks
     choice_input_ids: Optional[List[List[int]]] = None
     choice_attention_mask: Optional[List[List[int]]] = None
+
+
+class TransformerDataset(Dataset):
+    def __init__(self, inputs: List[TransformerInput]):
+        self.inputs = inputs
+
+    def __len__(self):
+        return len(self.inputs)
+
+    def __getitem__(self, idx):
+        item = self.inputs[idx]
+        # Convert to dict and filter out None values
+        item_dict = {
+            k: torch.tensor(v) for k, v in item.__dict__.items() if v is not None
+        }
+        return item_dict
