@@ -8,6 +8,12 @@ from utils import hf_login
 
 
 def load_data(dataset_name): ...
-
+    
 
 def preprocess_data(): ...
+
+
+def tokenize(): ...
+
+
+def post_process(): ...
