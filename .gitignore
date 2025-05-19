@@ -1,3 +1,10 @@
+# Large model files
+finetuned-fft/
+finetuned-lora/
+llama.cpp/
+qwen_choreo_fft/
+qwen_choreo_merged/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
