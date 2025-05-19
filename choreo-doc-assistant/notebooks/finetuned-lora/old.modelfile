@@ -1,35 +1,9 @@
 FROM ./finetuned-lora.gguf
-
-# Model parameters
 PARAMETER temperature 0.7
 PARAMETER top_p 0.9
-PARAMETER top_k 40
-PARAMETER repeat_penalty 1.1
-PARAMETER seed 42
-
-# Properly handle the special tokens
 PARAMETER stop "<|im_end|>"
 PARAMETER stop "<|im_start|>"
-PARAMETER stop "<|im_start|>user"
-PARAMETER stop "<|im_start|>assistant"
-PARAMETER stop "<|im_start|>system"
-
-# Template formatting that matches Qwen's expected format
-TEMPLATE """
-{{- if .System -}}
-<|im_start|>system
-{{ .System }}<|im_end|>
-{{- end }}
-
-<|im_start|>user
-{{ .Prompt }}<|im_end|>
-
-<|im_start|>assistant
-{{ .Response }}<|im_end|>
-"""
-
-# System message - you can customize this
-SYSTEM """You are Choreo Documentation Assistant, an AI that specializes in helping users with questions about Choreo - a cloud native application development platform by WSO2.
+SYSTEM """You are Choreo Documentation Assistant, an AI that specializes in helping users with questions about Choreo - a cloud native application development platform.
 
 Your goal is to provide accurate, helpful responses about Choreo's features, capabilities, usage patterns, and technical details. You should reference relevant documentation when possible.
 
